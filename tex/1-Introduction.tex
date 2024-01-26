@@ -1,0 +1,40 @@
+\section{Introduction}
+
+The field of mobile robots is expanding quickly and has the potential to completely transform a variety of industries. Mobile robots are becoming increasingly common in our daily lives as the need for automation rises. These robots are capable of assisting from healthcare to industrial automation. The advent of autonomous vehicles has revolutionized the transportation industry, promising safer and more efficient travel. However, the realization of this vision hinges on the development of advanced technologies capable of enabling these vehicles to navigate their environment safely and efficiently. One such technology is real-time object recognition, which allows autonomous vehicles to identify and classify objects in their path. 
+
+Autonomous vehicles rely heavily on sensors and computer vision algorithms to perceive their surroundings. These systems must be able to process large amounts of data in real time to make quick decisions, often within milliseconds. The challenge lies in developing algorithms that can accurately recognize objects while maintaining high computational efficiency.  Obstacle avoidance, which is essential for autonomous navigation, is one of the major problems in mobile robots. In the realm of mobile robotics, obstacle avoidance stands as a fundamental challenge, empowering robots to traverse cluttered environments with both safety and efficiency \cite{wenzel2021vision}.\\
+ Traditional obstacle avoidance methods, such as sonar, laser scanning, and stereo vision, have served as the cornerstone of these systems. However, these methods have inherent limitations, particularly in terms of their ability to handle dynamic and unpredictable scenarios.
+
+Recently, the integration of deep learning, a subset of machine learning, has brought about a paradigm shift in the field of autonomous vehicles. Deep learning algorithms, particularly Convolutional Neural Networks (CNNs), have proven to be highly effective in tasks such as image and speech recognition, natural language processing, and beyond 2. In the context of autonomous vehicles, deep learning has been instrumental in enhancing the perception of surroundings, driver behavior monitoring, path planning, sensor fusion, and intelligent control of vehicle dynamics 1.
+
+Deep learning-based control algorithms are especially crucial for achieving full autonomy. They can manage complex lateral and longitudinal maneuverings and can effectively calculate steering commands for lateral control and acceleration and braking commands for longitudinal speed control of vehicle 1. However, the safety of deep neural networks can be unstable under adverse conditions, necessitating the use of varied datasets for training the automated control system 1.
+
+This paper is focused on the application of deep learning in real-time object recognition for autonomous vehicles. 
+
+
+
+
+
+
+
+\section{Problem Statement}
+Developing real-time object detection systems for obstacle avoidance represents a nuanced and intricate task, necessitating meticulous consideration. The efficacy of such systems is contingent upon several pivotal factors, encompassing the quality of visual data, the intricacies of the underlying algorithms, and the overall architecture of the obstacle avoidance system. A thorough exploration of each of these components is imperative to optimize the system for superior performance.
+
+In addressing this inquiry, a comprehensive examination of the influencing factors is undertaken, seeking avenues for their refinement and enhancement. The goal is to engineer an obstacle-avoidance system of the highest quality. Furthermore, it is essential to contemplate the broader implications of the obstacle avoidance solution, assessing how it contributes to heightened safety and enhanced mobility across diverse contexts. By prioritizing these fundamental aspects, a profound understanding of the challenges inherent in real-time object detection systems can be cultivated. This nuanced understanding serves as a foundation for the development of innovative solutions, leveraging advanced computer vision techniques to surmount these obstacles.
+
+\section{General Objective:}
+The general objective of this study is to develop a deep learning-based obstacle avoidance system for mobile robots using Neural Architecture Search(NAS) in Python. The aim is to enable mobile robots to perceive their environment, detect obstacles in real time, and navigate safely through complex surroundings in real time.
+\subsection{Specific Objectives:}
+
+\begin{itemize}
+     \item Collect and curate a dataset of labeled images for training the obstacle detection neural network.
+    \item Preprocess the dataset by applying techniques such as image augmentation and normalization to improve the network's performance.
+    \item Design and implement a neural network architecture suitable for obstacle detection and avoidance.
+    \item Train the neural network using the COCO dataset, optimizing the network's parameters and hyperparameters.
+    \item 	Integrate the trained neural network into the mobile robot's control system for real-time obstacle detection and avoidance
+    \item Evaluate the performance of the obstacle avoidance system using quantitative metrics such as accuracy, precision, recall, and F1 score.
+    \item Compare the neural network-based approach with traditional methods of obstacle avoidance in terms of effectiveness, efficiency, and adaptability.
+    \item Assess the robustness and generalization capabilities of the trained neural network by testing it in various environments and with different types of obstacles.
+    \item Identify potential areas for further improvement and research in computer vision-based obstacle avoidance, such as multi-sensor fusion or incorporating depth information.
+    \item Provide practical insights and recommendations for implementing computer vision-based obstacle avoidance systems for mobile robots using neural networks in Python.
+\end{itemize}
