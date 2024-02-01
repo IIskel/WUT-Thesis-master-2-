@@ -62,7 +62,7 @@
 %-------------------------------------
 \cleardoublepage % Zaczynamy od nieparzystej strony
 \abstract \input{tex/abstract}
-\keywords Object detection, Neural Network, Deep Learning, YOLO, YOLO-NASz
+\keywords Object detection, Neural Network, Deep Learning, YOLO, YOLO-NAS
 
 %----------------------------------------
 % Streszczenie po angielsku dla \langpol
@@ -109,9 +109,66 @@
 % Makro \acronym dodaje skrót/symbol do listy,
 % zapewniając podstawowe formatowanie.
 \acronymlist
-\acronym{EiTI}{Wydział Elektroniki i Technik Informacyjnych}
-\acronym{PW}{Politechnika Warszawska}
-\acronym{WEIRD}{ang. \emph{Western, Educated, Industrialized, Rich and Democratic}}
+\acronym{COCO}{Common Objects in Context}
+\acronym{DNN}{Deep Neural Networks}
+\acronym{ANN}{Artificial Neural Network }
+\acronym{MLP}{Multilayer Perceptron}
+\acronym{ReLU}{Rectified Linear Unit}
+\acronym{SELU}{Scaled Exponential Linear Unit }
+\acronym{MSE}{Mean Squared Error}
+\acronym{MAE}{Mean Absolute Error}
+\acronym{MSLE}{Mean Squared Logarithmic Error}
+\acronym{SVM}{Support Vector Machine}
+\acronym{KLD}{Kullback-Leibler Divergence}
+\acronym{CNN}{Convolutional Neural Network}
+\acronym{RMSProp}{Root Mean Square Prop}
+\acronym{SGD}{Stochastic Gradient Descent}
+\acronym{GRU}{Gated Recurrent Unit}
+\acronym{LSTM}{Long-Short term Memory}
+\acronym{RNN}{Recurrent Neural Network}
+\acronym{BPTT}{Back-Propagation Through Time}
+\acronym{SOM}{Self Organized Map}
+\acronym{RBM}{Restricted Boltzmann Machines }
+\acronym{DBN}{Deep Belief Networks}
+\acronym{DNS}{Deep Stacking Networks}
+\acronym{SOTA}{State-of-Art}
+\acronym{YOLO}{You Look Only Once}
+\acronym{R-CNN}{Region-Based Convolutional Neural Network}
+\acronym{RPN}{Region Proposal Network}
+\acronym{FPN}{Feature Pyramid Network}
+\acronym{SSD}{Single Shot Detection}
+\acronym{IoU}{Intersection Over Union}
+\acronym{mAP}{Mean of Average Precision}
+\acronym{VOC}{Visual Object Classes}
+\acronym{TP}{True Positives}
+\acronym{TN}{True Negatives}
+\acronym{FP}{False Positives}
+\acronym{FN}{False Negatives}
+\acronym{VGG}{Visual Geometry Group}
+\acronym{PP-YOLO}{Paddle Paddle \emph{You Look Only Once}}
+\acronym{MAE-NAS}{Maximum Entropy  Neural Architecture Search}
+\acronym{GPU}{Graphics Processing Unit}
+\acronym{E-ELAN}{Extended Efficient Layer Aggregation Network}
+\acronym{ET-head}{Efficient Task-Aligned Head}
+\acronym{VFL}{Varifocal}
+\acronym{DFL}{Distribution Focal Loss}
+\acronym{FPS}{Frames Per Second}
+\acronym{PAN}{Path Aggregation Network}
+\acronym{YOLO-NAS}{\emph{You Look Only Once Neural Architectural Search}}
+\acronym{KD}{Knowledge Distillation}
+\acronym{AutoNAC}{Automated Neural Architecture Construction}
+\acronym{QSP}{Quantization-Specific Parameters}
+\acronym{QCI}{Quantization-Centric Initialization}
+\acronym{NAS}{Neural Architectural Search}
+\acronym{SPP}{Spatial Pyramid Pooling}
+\acronym{AI}{Artificail Intelligence}
+\acronym{YOLO-NASS}{YOLO-NAS-Small}
+\acronym{YOLO-NASM}{YOLO-NAS-Medium}
+\acronym{YOLO-NASL}{YOLO-NAS-Large}
+\acronym{RF}{Roboflow}
+\acronym{EMA}{Exponential Moving Average }
+\acronym{AP}{Average Precision}
+\acronym{SGLogger}{Super-Gradient Logger}
 \vspace{0.8cm}
 
 %--------------------------------------
@@ -123,38 +180,40 @@
 \vspace{1cm}         % vertical space
 \listoftablestoc     % Spis tabel.
 \vspace{1cm}         % vertical space
-\listofappendicestoc % Spis załączników
+
+%I commented out the appenecis
+%\listofappendicestoc % Spis załączników
 
 %-------------
 % Załączniki
 %-------------
 
 % Obrazki i tabele w załącznikach nie trafiają do spisów
-\captionsetup[figure]{list=no}
-\captionsetup[table]{list=no}
+% \captionsetup[figure]{list=no}
+% \captionsetup[table]{list=no}
 
-% Załącznik 1
-\clearpage
-\appendix{Nazwa załącznika 1}
-% \lipsum[1-3]
-\begin{figure}[!h]
-	\centering \includegraphics[width=0.5\linewidth]{logopw2.png}
-	\caption{Obrazek w załączniku.}
-\end{figure}
-% \lipsum[4-7]
+% % Załącznik 1
+% \clearpage
+% \appendix{Nazwa załącznika 1}
+% % \lipsum[1-3]
+% \begin{figure}[!h]
+% 	\centering \includegraphics[width=0.5\linewidth]{logopw2.png}
+% 	\caption{Obrazek w załączniku.}
+% \end{figure}
+% % \lipsum[4-7]
 
-% Załącznik 2
-\clearpage
-\appendix{Nazwa załącznika 2}
-% \lipsum[1-2]
-\begin{table}[!h] \centering
-    \caption{Tabela w załączniku.}
-    \begin{tabular} {| c | c | r |} \hline
-        Kolumna 1       & Kolumna 2 & Liczba \\ \hline\hline
-        cell1           & cell2     & 60     \\ \hline
-        \multicolumn{2}{|r|}{Suma:} & 123,45 \\ \hline
-    \end{tabular}
-\end{table}
+% % Załącznik 2
+% \clearpage
+% \appendix{Nazwa załącznika 2}
+% % \lipsum[1-2]
+% \begin{table}[!h] \centering
+%     \caption{Tabela w załączniku.}
+%     \begin{tabular} {| c | c | r |} \hline
+%         Kolumna 1       & Kolumna 2 & Liczba \\ \hline\hline
+%         cell1           & cell2     & 60     \\ \hline
+%         \multicolumn{2}{|r|}{Suma:} & 123,45 \\ \hline
+%     \end{tabular}
+% \end{table}
 % \lipsum[3-4]
 
 % Używając powyższych spisów jako szablonu,

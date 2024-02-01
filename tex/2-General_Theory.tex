@@ -238,7 +238,7 @@ we can broadly divide the activation function into two: \\
     The TanH activation function calculates the neuron output using:\\
     $$tanh(z)=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}$$
     The advantage is that the negative inputs will be mapped strongly negative and the zero inputs will be mapped near zero in the tanh graph.
-    \item \textbf{ReLU (Rectified Linear Unit) Activation Function}
+    \item \textbf{ReLU (Rectified Linear Unit) Activation Function)}
     ReLU is widely used for most computer vision model training as the image pixels do not have negative values. The advantage of the ReLU activation function is that it is computationally efficient and allows the network to converge quickly. Also, ReLU is nonlinear, and it has a derivative function that makes it suitable for backpropagation for weight adjustment as the neural network learns.
     
     \begin{figure}[H]
@@ -553,9 +553,9 @@ It is a Techniques for combating overfitting and improving training. Regularizat
 
     Dropout is a technique where randomly selected neurons are ignored during training. They are “dropped-out” randomly. This means that their contribution to the activation of downstream neurons is temporally removed on the forward pass and any weight updates are not applied to the neuron on the backward pass.
     
-    Simply put, It is the process of ignoring some of the neurons in particular forward or backward pass.
+    Simply put, it is the process of ignoring some of the neurons in particular forward or backward pass.
     
-    Dropout can be easily implemented by randomly selecting nodes to be dropped-out with a given probability (e.g. .1\%) each weight update cycle.
+    Dropout can be easily implemented by randomly selecting nodes to be dropped out with a given probability (e.g .1\%) each weight update cycle.
     
     Most importantly Dropout is only used during the training of a model and is not used when evaluating the model. \\
     \item \textbf{Early Stopping: } One alternative technique to prevent overfitting is use validation error to decide when to stop. This approach is called Early Stopping.

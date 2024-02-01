@@ -41,7 +41,7 @@ Traditional object detection systems use a sliding window approach where they ap
     Introduced MAE-NAS, Efficient-RepGFPN, ZeroHead, and knowledge distillation. \cite{xu2022damo}\\
     \item \textbf{YOLOv8 :}
     YOLOv8 (January 2023) by Ultralytics with anchor-free prediction and faster NMS. Mosaic augmentation during training for improved accuracy.
-    YOLOv8 offers five scaled versions: YOLOv8n (nano), YOLOv8s (small), YOLOv8m (medium), YOLOv8l (large), and YOLOv8x (extra-large). YOLOv8x outperformed YOLOv5 on the MS COCO dataset with an impressive 53.9\% AP at 640 pixels and fast speed.\cite{yolov8}, \cite{terven2023comprehensive}
+    YOLOv8 offers five scaled versions: YOLOv8n (nano), YOLOv8s (small), YOLOv8m (medium), YOLOv8l (large), and YOLOv8x (extra\-large). YOLOv8x outperformed YOLOv5 on the MS COCO dataset with an impressive 53.9\% AP at 640 pixels and fast speed.\cite{yolov8}, \cite{terven2023comprehensive}
 \end{enumerate}
 \href{https://www.mdpi.com/2504-4990/5/4/83}{\textcolor{blue}{Source}}
 \subsection{YOLO-NAS}
@@ -134,7 +134,7 @@ it takes all three above-mentioned inputs, and the search space is automatically
     \label{fig:autonac_under_the_hood}
 \end{figure}
 Finally, AutoNAC Engine explores and maps the efficiency frontier, searching for an architecture that best balances latency vs. throughput. Deci Group samples three points of this frontier to create the YOLO-NASS, YOLO-NASM, and YOLO-NASL architectures.
-\subsection{How to find the best architecture out of the search space}
+\subsubsection{How to find the best architecture out of the search space}
 while the search space has trillions of candidate architectures, the task of identifying the optimal architecture becomes increasingly challenging. Within the realm of Deci, the selection of the most suitable candidate from the numerous models within the extensive search space is guided by two distinct evaluation criteria. \cite{yolo-nas-webinar}
 \begin{enumerate}
     \item \textbf{Bench Marking: } Understanding how the model will behave on the expected hardware or using the techniques of Latency Vs. throughput for the candidate architecture. \\
