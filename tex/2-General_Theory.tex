@@ -35,7 +35,7 @@ vision, automated language processing, and text classification (for example spam
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{tex/img/NN_DL_ML.png}
-    \caption{Neural network core of deep learning \protect\href{https://intellipaat.com/community/9868/what-is-the-difference-between-deep-learning-and-traditional-artificial-neural-network-machine-learning}{\textcolor{blue}{Source}}}
+    \caption{Neural network core of deep learning}
     \label{fig:NN_DL}
 \end{figure}
 
@@ -45,7 +45,7 @@ An artificial neural network (ANN) is a computing system that is designed to wor
 
 \subsubsection{The Biological Inspiration}
 The brain has been extensively studied by scientists. Vast complexity prevents all but rudimentary understanding. 
-- Engineers modified the neural models to make them more useful, less like biology and kept much of the terminology
+- Engineers modified the neural models to make them more useful, less like biology, and kept much of the terminology
 
 \begin{figure}[H]
     \centering \includegraphics[width=0.5\linewidth]{tex/img/Structure_of_Neurons.PNG}
@@ -78,10 +78,10 @@ $\omega_{i}$ is the weight associated with the input \(x_{i}\)\\
 \(f:\) activation\\
 As shown in fig \ref{fig:Perceptron}, One percepteron has the following components: \\
 \begin{itemize}
-    \item \textbf{Input Nodes or Input Layer: } The input layer, also known as the input nodes, is the first layer in a neural network. It is responsible for receiving the input data, which can be anything from numerical values to images or text. The input layer doesn't perform any computations or transformations on the input data, it merely passes it along to the subsequent layers in the network. \\
+    \item \textbf{Input Nodes or Input Layer: } The input layer, also known as the input nodes, is the first layer in a neural network. It is responsible for receiving the input data, which can be anything from numerical values to images or text. The input layer doesn't perform any computations or transformations on the input data, it merely passes it along to the subsequent layers in the network. \cite{ansari2020building}, \cite{nielsen2015neural}\\
     \item \textbf{Weight: } Weights are parameters that adjust the strength of the connections between neurons (nodes) in adjacent layers of a neural network. Each connection has an associated weight, and these weights are learnable and updated during the training process. The weights determine the impact of the input signals on the neurons in the next layer. A higher weight means that the corresponding input has a stronger influence on the neuron's output. During training, the neural network adjusts these weights to minimize the difference between the predicted output and the actual target output. \\
     \item \textbf{Bias: } Biases are additional parameters in a neural network that allows for fine-tuning the output of each neuron. Unlike weights, biases are not associated with specific inputs but are added to the weighted sum of inputs in each neuron.
-    Role: Biases provide the neural network with flexibility, enabling it to account for situations where all inputs are zero or have low values. They allow neurons to activate even when the weighted sum of inputs is not sufficient to trigger an output. Like weights, biases are adjusted during training to improve the network's overall performance. \\
+    Role: Biases provide the neural network with flexibility, enabling it to account for situations where all inputs are zero or have low values. They allow neurons to activate even when the weighted sum of inputs is not sufficient to trigger an output. Like weights, biases are adjusted during training to improve the network's overall performance. \cite{ansari2020building}, \cite{nielsen2015neural}\\
     \item \textbf{Activation Function: } The primary purpose of an activation function is to determine whether a neuron should be activated (output a signal) or not, based on the input it receives.
     An activation function is a mathematical operation applied to the output of a neuron (or node) in a neural network. It introduces non-linearity to the network, allowing it to learn complex patterns and make more sophisticated decisions. The activation function takes the weighted sum of inputs and a bias term and produces the output of the neuron.\cite{nielsen2015neural}
 

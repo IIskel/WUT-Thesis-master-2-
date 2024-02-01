@@ -109,6 +109,58 @@ In section [\nameref{datset}] I have discussed the dataset properties
     \caption{YOLO-NAS-L Overall results }
     \label{fig:ConfusionMatrixY-N-S}
 \end{figure}
+
+\begin{table}[htbp]
+\centering
+\caption{Over-all results of the three model}
+\footnotesize
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|}%{ |c|c|c| }
+\hline
+\multicolumn{ 6}{|c|}{\textbf{YOLO-NAS-SMALL}}\\
+\hline
+\hline
+ & Bus& Car& Motorbike& Truck& van \\
+\hline
+Bus& \cellcolor[HTML]{00FFFF}{0.23}& & & & \\
+\hline
+Car& & \cellcolor[HTML]{00FFFF}{0.77}& & & \\
+\hline
+Motorbike& & & \cellcolor[HTML]{00FFFF}{0.75}& & \\
+\hline
+Truck& & & & \cellcolor[HTML]{00FFFF}{0.73}& \\ 
+\hline
+Van& & & & & \cellcolor[HTML]{00FFFF}{0.68}\\
+\hline
+\hline
+\multicolumn{ 6}{|c|}{\textbf{YOLO-NAS-MEDIUM}} \\ \hline
+\hline
+Bus& \cellcolor[HTML]{00FFFF}{0.37}& & & & \\
+\hline
+Car& & \cellcolor[HTML]{00FFFF}{0.81}& & & \\
+\hline
+Motorbike& & & \cellcolor[HTML]{00FFFF}{1.00}& & \\
+\hline
+Truck& & & & \cellcolor[HTML]{00FFFF}{0.78}& \\ 
+\hline
+Van& & & & & \cellcolor[HTML]{00FFFF}{0.67}\\
+\hline
+\hline
+\multicolumn{ 6}{|c|}{\textbf{YOLO-NAS-LARGE}} \\ \hline
+\hline
+Bus& \cellcolor[HTML]{00FFFF}{0.69}& & & & \\
+\hline
+Car& &\cellcolor[HTML]{00FFFF}{0.86} & & & \\
+\hline
+Motorbike& & & \cellcolor[HTML]{00FFFF}{0.75} & & \\
+\hline
+Truck& & & &\cellcolor[HTML]{00FFFF}{0.72} & \\ 
+\hline
+Van& & & & &\cellcolor[HTML]{00FFFF}{0.63} \\
+\hline
+\end{tabular}
+\end{table}
+
+
 \subsection{Training and Implementation Details}
 For all of the models, I’ve used a batch size of 16, and trained for 20 epochs using NVIDIA Tesla T4 GPU. I implemented and trained the models using Google Colab. 
 
@@ -133,5 +185,16 @@ I have tweaked various hyperparameters for this work. I have set the ”average 
          \hline
     \end{tabular}
 \end{table}
-YOLO-NAS has three models: Large, Medium, and Small.The model with the highest precision NAS-S, achieving a precision of 78.8\%.The model with the highest recall, mAP, and F1 is NAS-M, achieving a recall of62.7\%, a mAP@0.5of69.8\%, and an F1@0.5of67.85\%.Full results, including the losses calculated from the different loss functions, can be found in table \ref{tab:my_label}
 
+The performance metrics presented in Table \ref{tab:my_label} highlight interesting facets of the behavior of the different YOLO-NAS variants. First, it is worth mentioning that the Recall scores for all models are exceptionally high, above 0.88 in all cases, which means that these models are very good at detecting the classes. This could be crucial in scenarios where the priority is to detect as many positive cases as possible, even at the risk of detecting some false classes.
+
+
+The Precision scores, however, tell a different story. They are markedly lower for all models, especially when compared to the high Recall scores. YOLO-NASl, the largest model, offers the best Precision at 0.11563, followed by YOLO-NASm at 0.0917, and finally, YOLO-NASs at 0.079. These low Precision scores suggest that while the models are good at capturing positive cases, they also have a high rate of false positives. 
+
+The F1-score, grows with the model size, reflecting that larger models achieve a better balance between these two measures.
+
+Regarding, the mAP@50 scores, also grow with the model size, reflecting that the larger models deliver a slight edge in overall performance.\\
+
+In summary, while all the YOLO-NAS models exhibit
+strong ability in capturing positive cases, they struggle with precision, indicating a high level of false positives. The models’ complexity seems to positively influence precision and F1-score, though marginally, suggesting potential benefits of
+using larger models if computational resources and training time permit. However, the precision-recall trade-off must be carefully considered based on the specific requirements of the detection task.

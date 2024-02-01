@@ -5,11 +5,11 @@ The field of mobile robots is expanding quickly and has the potential to complet
 Autonomous vehicles rely heavily on sensors and computer vision algorithms to perceive their surroundings. These systems must be able to process large amounts of data in real time to make quick decisions, often within milliseconds. The challenge lies in developing algorithms that can accurately recognize objects while maintaining high computational efficiency.  Obstacle avoidance, which is essential for autonomous navigation, is one of the major problems in mobile robots. In the realm of mobile robotics, obstacle avoidance stands as a fundamental challenge, empowering robots to traverse cluttered environments with both safety and efficiency \cite{wenzel2021vision}.\\
  Traditional obstacle avoidance methods, such as sonar, laser scanning, and stereo vision, have served as the cornerstone of these systems. However, these methods have inherent limitations, particularly in terms of their ability to handle dynamic and unpredictable scenarios.
 
-Recently, the integration of deep learning, a subset of machine learning, has brought about a paradigm shift in the field of autonomous vehicles. Deep learning algorithms, particularly Convolutional Neural Networks (CNNs), have proven to be highly effective in tasks such as image and speech recognition, natural language processing, and beyond 2. In the context of autonomous vehicles, deep learning has been instrumental in enhancing the perception of surroundings, driver behavior monitoring, path planning, sensor fusion, and intelligent control of vehicle dynamics 1.
+Recently, the integration of deep learning, a subset of machine learning, has brought about a paradigm shift in the field of autonomous vehicles. Deep learning algorithms, particularly Convolutional Neural Networks (CNNs), have proven to be highly effective in tasks such as image and speech recognition, natural language processing, and beyond. In the context of autonomous vehicles, deep learning has been instrumental in enhancing the perception of surroundings, driver behavior monitoring, path planning, sensor fusion, and intelligent control of vehicle dynamics.
 
-Deep learning-based control algorithms are especially crucial for achieving full autonomy. They can manage complex lateral and longitudinal maneuverings and can effectively calculate steering commands for lateral control and acceleration and braking commands for longitudinal speed control of vehicle 1. However, the safety of deep neural networks can be unstable under adverse conditions, necessitating the use of varied datasets for training the automated control system 1.
+Deep learning-based control algorithms are especially crucial for achieving full autonomy. They can manage complex lateral and longitudinal maneuverings and can effectively calculate steering commands for lateral control and acceleration and braking commands for longitudinal speed control of vehicle 1. However, the safety of deep neural networks can be unstable under adverse conditions, necessitating the use of varied datasets for training the automated control system.
 
-This paper is focused on the application of deep learning in real-time object recognition for autonomous vehicles. 
+This paper is focused on the application of deep learning algorithm called YOLO-NAS in real-time object recognition for autonomous vehicles. 
 
 
 
@@ -29,8 +29,7 @@ The general objective of this study is to develop a deep learning-based obstacle
 \begin{itemize}
      \item Collect and curate a dataset of labeled images for training the obstacle detection neural network.
     \item Preprocess the dataset by applying techniques such as image augmentation and normalization to improve the network's performance.
-    \item Design and implement a neural network architecture suitable for obstacle detection and avoidance.
-    \item Train the neural network using the COCO dataset, optimizing the network's parameters and hyperparameters.
+    \item Fine-tune and implement a neural network architecture suitable for obstacle detection and avoidance.
     \item 	Integrate the trained neural network into the mobile robot's control system for real-time obstacle detection and avoidance
     \item Evaluate the performance of the obstacle avoidance system using quantitative metrics such as accuracy, precision, recall, and F1 score.
     \item Compare the neural network-based approach with traditional methods of obstacle avoidance in terms of effectiveness, efficiency, and adaptability.

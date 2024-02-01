@@ -71,6 +71,8 @@
 \RequirePackage{float}             %used to place the figure exactly
 \RequirePackage{color}
 \RequirePackage{framed}
+\usepackage[table]{xcolor}
+\usepackage[dvipsnames]{xcolor}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
