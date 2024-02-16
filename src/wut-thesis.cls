@@ -73,9 +73,7 @@
 \RequirePackage{framed}
 \usepackage[table]{xcolor}
 \usepackage[dvipsnames]{xcolor}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 % \RequirePackage{titlesec}
 
 % \titleformat{\section}[block]{\normalfont\Large\bfseries}{\thesection}{1em}{}[\vspace{0.5\baselineskip}]
@@ -439,7 +437,7 @@
     \begin{figure}[ht]
         \vspace{-55pt}
         \noindent\makebox[\textwidth]{
-        \includegraphics[width=1.19\textwidth]{src/\@lang/authorship/\@faculty.pdf}
+        \includegraphics[width=1.19\textwidth]{src/en/authorship/eiti-1.pdf}
         }
     \end{figure}
 }
@@ -452,7 +450,7 @@
     \begin{figure}[ht]
         \vspace{-55pt}
         \noindent\makebox[\textwidth]{
-        \includegraphics[width=1.19\textwidth]{src/\@lang/license/\@faculty.pdf}
+        \includegraphics[width=1.19\textwidth]{src/en/authorship/eiti-2.pdf}
         }
     \end{figure}
 }

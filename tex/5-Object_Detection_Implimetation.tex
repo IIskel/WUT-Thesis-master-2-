@@ -1,12 +1,8 @@
 \section{Object detection Implementations and fine-tuning on custom dataset}
 
 \begin{enumerate}
-    \item \textbf{Environment Setup: } Google colab is free resaerch environment provided by $Google^{Tm}$. Using Google Colab for training deep learning models, including YOLO-NAS, provides you with access to free GPU resources. Before we start training, we need to prepare our Python environment and start by installing the required packages.
-    The YOLO-NAS model is distributed using a \boxed{\textcolor{black}{super-gradients}}  package. In addition, we will install \boxed{roboflow} and \boxed{supervision}, which will allow us to download the dataset from Roboflow Universe and visualize the results of our training respectively. We use \boxed{\texttt{!pip 
-    install}} to install the required package. 1. \href{https://deci.ai/blog/how-to-train-yolo-nas-with-supergradients-a-step-by-step-guide/}{\textcolor{blue}{Source 1}},
-2.\href{https://blog.roboflow.com/yolo-nas-how-to-train-on-custom-dataset/#what-is-yolo-nas}{\textcolor{blue}{Source}} \\
-
-3.\href{https://docs.deci.ai/super-gradients/latest/YOLONAS.html#quickstart}{\textcolor{blue}{quick start}}\\
+    \item \textbf{Environment Setup: } Google CoLab is a free research environment provided by $Google^{Tm}$. Using Google Colab for training deep learning models, including YOLO-NAS, provides you with access to free GPU resources. Before we start training, we need to prepare our Python environment and start by installing the required packages.
+    The YOLO-NAS model is distributed using a \boxed{\textcolor{black}{super-gradients}}  package. In addition, we will install \boxed{roboflow} and \boxed{supervision}. Roboflow will enable us to download the dataset from the Roboflow Universe, while Supervision will allow us to visualize the outcomes of our training. We use \boxed{\texttt{!pip install}} to install the required package. \cite{supergradients}
     
     \begin{lstlisting}[language=Python, caption=Installing the required package]
     !pip install super-gradients
@@ -15,14 +11,47 @@
         
     \end{lstlisting}
     \item \textbf{Load YOLO-NAS Model}
-    To support the open-source community, Deci group has released the capability to fine-tune YOLO-NAS models on the RF100 dataset within the SuperGradients library. To perform inference using the pre-trained model, we first need to choose the size of the model. YOLO-NAS offers three different model sizes: \verb|yolo_nas_s|, \verb|yolo_nas_m|, and \verb|yolo_nas_l|.
+    I have automated the selection of the model. To support the open-source community, the Deci group has released the capability to fine-tune YOLO-NAS models on the RF100 dataset within the SuperGradients library. To perform inference using the pre-trained model, we first need to choose the model size. YOLO-NAS offers three different model sizes:  \verb|yolo_nas_s|, \verb|yolo_nas_m|, and \verb|yolo_nas_l|.
     \begin{lstlisting}[language=Python, caption=importing models from the supergradients][H]
+    #[Original Version]
     from super_gradients.training import models
-
+    
     model = models.get(yolo_nas_l, pretrained_weights="coco").to(DEVICE)
+    
+    #[The Modified Version]
+    import torch #gives us access to some helpful neural network things,
+    such as various neural network layer types
+
+    DEVICE = 'cuda' if torch.cuda.is_available() else "cpu"  #Check if
+    GPU is available
+    
+    MODEL_ARCH_OPTIONS = ['yolo_nas_l', 'yolo_nas_m', 'yolo_nas_s']
+    
+    # Display options to the user
+    print("Choose a model architecture:")
+    for i, MODEL_ARCH in enumerate(MODEL_ARCH_OPTIONS, start=1):
+        print(f"{i}. {MODEL_ARCH}")
+    
+    # Take input from the user
+    while True:
+        try:
+            user_input = int(input("Enter your choice number: "))
+            if 1 <= user_input <= len(MODEL_ARCH_OPTIONS):
+                selected_model_arch = MODEL_ARCH_OPTIONS[user_input - 1]
+                print(f"Selected Model Architecture: {selected_model_arch}")
+                break
+            else:
+                print("Invalid input. Please enter a valid number.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+    
+
+
+
+
     \end{lstlisting}
     \item \textbf{Dataset Download and Directory Structure: }
-   To perform model fine-tuning, the acquisition of pertinent data is imperative. The requisite dataset structure for this endeavor adheres to the YOLO format. Presently, I am utilizing a dataset sourced from the Roboflow universe, encompassing a vast repository of over 100,000 open-source computer vision datasets. Significantly, the dataset obtained from Roboflow is inherently organized to align with the prescribed folder structure mandated by YOLO standards.
+   To perform model fine-tuning, the acquisition of pertinent data is imperative. The requisite dataset structure for this endeavor adheres to the YOLO format. I am utilizing a dataset from the Roboflow universe, encompassing a vast repository of over 100,000 open-source computer vision datasets. Significantly, the dataset obtained from Roboflow is inherently organized to align with the prescribed folder structure mandated by YOLO standards.
 
     \begin{lstlisting}[caption=Dataset folder structure YOLO format][style=custom,language=sh]
     /directory_to_your_dataset
@@ -48,10 +77,10 @@
     where \verb|<class_id>| is an integer representing the class of the object, and 
     \texttt{<x\_center>, <y\_center>, <width>, and <height>}
     are the normalized coordinates of the bounding box.
-   In the process of importing data from the Roboflow universe, the inclusion of a data.yaml file is an automated or default feature. This file serves as a dictionary, encapsulating the names of classes associated with the imported data.  
+   In the process of importing data from the Roboflow universe, the inclusion of a data.yaml file is an automated or default feature. This file serves as a dictionary, encapsulating the names of classes associated with the imported data. 
     The order of the class names should match the \texttt{<class\_id>} in the label files.
     \item \textbf{Dataset Parameters for Training YOLO NAS}
-    After preparing your data, you need to create a Python dictionary that outlines the key elements of your dataset’s structure, such as: \href{https://learnopencv.com/train-yolo-nas-on-custom-dataset/}{\textcolor{blue}{Source}}
+    After preparing your data, you need to create a Python dictionary that outlines the key elements of your dataset’s structure, as such: 
     \begin{lstlisting}[language=Python]
         dataset_params = {
         'data_dir': LOCATION,
@@ -64,22 +93,21 @@
         'classes': CLASSES
     }
     \end{lstlisting}
-    Using the \texttt{dataset\_params} we can easily create the datasets in the required format later on,   Where LOCATION is the path to the main directory where your dataset resides, and CLASSES is the list of class names you created earlier. Also, we need to define the number of training epochs, the batch size, and the number of workers for data processing.
+    Using the \texttt{dataset\_params} we can easily create the datasets in the required format later on,   Where LOCATION is the path to the main directory where your dataset resides, and CLASSES is the list of class names you created earlier. It's important to specify the number of training epochs, batch size, and data processing workers.
     \begin{lstlisting}[language=Python]
-        EPOCHS = 50,
+        EPOCHS = 60,
         BATCH_SIZE = 16,
         WORKERS = 8 
     \end{lstlisting}
 
-  
-    
-    \item \textbf{Setting-up dataloaders: }  SuperGradients provides ready-to-use dataloaders for the datasets it supports. Import required modules for SuperGradients dataloaders.
+     
+    \item \textbf{Setting-up dataloaders: }  SuperGradients provides ready-to-use dataloaders for the datasets it supports. Import the required modules for SuperGradients dataloaders.\cite{supergradients}
     \begin{lstlisting}[language=Python, caption=Setting-Up Dataloaders]
     from super_gradients.training import dataloaders
-    from super_gradients.training.dataloaders.dataloaders import
+    from super_gradients.training.dataloaders import
     (coco_detection_yolo_format_train, coco_detection_yolo_format_val) 
     \end{lstlisting}
-     Create data loaders for training, validation, and testing sets with specified batch size and number of workers. Below we use \texttt{batch\_size}=16 and \texttt{num\_workers}=2. Note that for training and testing data we use \verb|coco_detection_yolo_format_val| to instantiate the dataloader.  
+     For training, validation, and testing sets, create data loaders with a given batch size and workers Below we use \texttt{batch\_size}=16 and \texttt{num\_workers}=2. Note that we use \verb|coco_detection_yolo_format_val| for training and testing data to instantiate the dataloader.  
      \begin{lstlisting}[language=Python, caption=Setting-Up Dataloaders]
         from IPython.display import clear_output 
         train_data = coco_detection_yolo_format_train(
@@ -123,32 +151,33 @@
         clear_output()
      \end{lstlisting}
      \item \textbf{Model Instantiation for Fine-Tuning}
-     Choose the YOLO-NAS variant (e.g., \texttt{yolo\_nas\_l}) and instantiate the model, specifying the number of classes based on your dataset.
+     Choose the YOLO-NAS variant (e.g., \texttt{yolo\_nas\_l}) and launch the model, tailoring the number of classes to your dataset.
      \begin{lstlisting}
         from super_gradients.training import models
-        model = models.get('yolo_nas_l', num_classes=len(dataset_params
+        model = models.get(selected_model_arch , num_classes=len(dataset_params
         ['classes']), pretrained_weights="coco")
      \end{lstlisting}
-    \item \textbf{Training Parameters and Metrics: } When setting up your training using SuperGradients, it's important to define your training parameters carefully. These parameters not only affect your training process, but also have a significant impact on the performance of your model. To help you get started, here's a brief overview of the most crucial parameters and some advanced features you should consider. \\
+    \item \textbf{Training Parameters and Metrics: } While utilizing SuperGradients, define your training parameters thoughtfully because they will affect your training process and significantly impact your model's performance. To help you get started, here's a brief overview of the most crucial parameters and some advanced features you should consider. \cite{supergradients}\\
     
     \textbf{Essential Training Parameters}\\
     \begin{itemize}
-        \item \textbf{\texttt{max\_epochs}}: Sets the maximum number of training cycles. \\
-        \item \textbf{loss: } Choose a suitable loss function for your model and dataset. \\
-        \item \textbf{optimizer: } Opt for an optimizer (e.g., Adam, AdamW, SGD) and customize it if necessary through \texttt{optimizer\_params}.\\
+        \item \textbf{\texttt{max\_epochs}}: Tells the upper limit for the number of training cycles.\\
+        \item \textbf{loss: } Select an appropriate loss function for your model and dataset. \\
+        \item \textbf{optimizer: } Choose an optimizer and modify it if needed using \texttt{optimizer\_params}.\\
         \item \textbf{\texttt{train\_metrics\_list}/\texttt{valid\_metrics\_list}: } Specify metrics for evaluating training and validation performance. These are implemented as \href{https://lightning.ai/docs/torchmetrics/stable/}{Torchmetric} objects. \\
         \item \textbf{\texttt{metric\_to\_watch}: } Select a primary metric to determine checkpoint saving. \\
     \end{itemize} 
     
     \textbf{Advanced Features and Integrations}\\
     \begin{itemize}
-        \item \textbf{Monitoring Tools: } Utilize integrations with Tensorboard, Weights and Biases, or ClearML for tracking training progress. Custom integrations can be achieved using Base SGLogger.
-        \item \textbf{Training Enhancements: } SuperGradients offers features like Exponential Moving Average, Zero Weight Decay on Bias and Batch Normalization, Weight Averaging, Batch Accumulation, and Precise BatchNorm for optimized training.
-        \item \textbf{Custom Metrics: } SuperGradients supports the creation of custom metrics for specialized needs.
+        \item \textbf{Monitoring Tools: } There a lot of monitoring tools like Weights, Tensorboard,   ClearML, Biases, or for tracking training progress. Custom integrations can be achieved using Base SGLogger.
+        \item \textbf{Enhancing the Training : } there are so many features in supergradients SuperGradients like Exponential Moving Average(EMA), Zero Weight Decay on Bias and Batch Normalization, Weight Averaging, Batch Accumulation, and Precise BatchNorm for optimized training.
+        \item \textbf{Custom Metrics: } SuperGradients is customizable allows create custom metrics.
     \end{itemize}
     
     \textbf{Loss and Detection Metrics Setup: }\\
-    For functions like PPYoloELoss and \texttt{DetectionMetrics\_050}, ensure you specify the number of classes in your dataset correctly to align loss calculations and metrics evaluation with your dataset’s specifics.
+   Setup Loss and Detection Metrics: 
+ correct number of classes for functions like PPYoloELoss and DetectionMetrics\_050 to align with dataset specifics.
     
     \begin{lstlisting}[language=Python]
         from super_gradients.training.losses import PPYoloELoss
@@ -207,18 +236,19 @@
     \item \textbf{ Fetching the Best(Optimal) Model after Training: } Following intensive training, wherein the model underwent rigorous learning iterations, we are now focused on retrieving the best-trained model. This phase involves selecting the most refined and proficient version of the model, one that has successfully absorbed and generalized patterns from the training data. The goal is to identify the model that exhibits superior performance, ensuring its readiness for deployment in real-world scenarios. This meticulous retrieval process is crucial for obtaining a highly capable and reliable model that aligns with the desired objectives and expectations. In SuperGradients, this involves selecting the most effective set of weights from your training runs.\\
     \textbf{Using Checkpoint Averaging}
     \begin{addmargin}[8mm]{0mm}
+    \footnotesize
     \begin{lstlisting}[language=Python, caption=Load trained model][H]
     from super_gradients.training import models
 
-    # Path to the averaged checkpoint
-    averaged_checkpoint_path = 'checkpoints/my_first_yolonas_run
-                    /average_model.pth'
+    # Path to the best weight checkpoint
+    averaged_checkpoint_path = 'checkpoints/Experiment_name/average_model.pth'
     
     # Retrieve the model with averaged weights
-    best_model = models.get('yolo_nas_l', 
-                            num_classes=len(dataset_params['classes']),
-                            checkpoint_path=averaged_checkpoint_path)
-        
+    best_model = models.get(
+            selected_model_arch,
+            num_classes=len(dataset_params['classes']),
+            checkpoint_path=f"{CHECKPOINT_DIR}/{EXPERIMENT_NAME}/ckpt_best.pth"
+    ).to(DEVICE)
     \end{lstlisting}
     \end{addmargin}
     \item \textbf{Evaluate trained model}
@@ -242,21 +272,12 @@
         )
     \end{lstlisting}
     \end{addmargin}
-    \item \textbf{Model Evaluation on Test Data: } Evaluating a model on test data is a pivotal phase within the machine learning workflow, serving to gauge the effectiveness of a trained model on data it has not encountered during training. The primary objective is to ascertain the model's generalization capability to novel, unseen instances. This section outlines prevalent metrics and procedures employed in the assessment of a model using test data.
+    \item \textbf{Model Evaluation on Test Data: } Evaluating a model on test data is a pivotal phase within the machine learning workflow, gauging the effectiveness of a trained model on new data. The primary objective is to ascertain the model's generalization capability for novel, unseen instances. This section outlines the prevalent metrics and procedures employed in assessing a model using test data.
 \begin{addmargin}[8mm]{0mm} 
-\begin{lstlisting}[
-    language=Python,
-    caption=Inference with trained model,
-    numbers=left,
-    firstnumber=1,
-    aboveskip=10pt,
-    xleftmargin=10mm,  % Adjust the left margin as needed
-    linewidth=\linewidth,  % Ensures that the code fits within the page width
-]
-img_url = 'https://www.mynumi.net/media/catalog/product/cache/2/
-image/9df78eab33525d08d6e5fb8d27136e95/s/e/serietta_usa_2_1/
-www.mynumi.net-USASE5AD160-31.jpg'
-best_model.predict(img_url).show()     
+\footnotesize
+\begin{lstlisting}[language=Python, caption=Inference with trained model]
+Images ='Path_to_image'
+images_predications = best_model.predict(Images, iou=0.5, conf=0.5).show()   
 \end{lstlisting}
 \end{addmargin}
 
