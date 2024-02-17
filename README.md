@@ -1,12 +1,7 @@
 # WUT-Thesis ![CI](https://github.com/ArturB/WUT-Thesis/workflows/CI/badge.svg)
 
-Repozytorium zawiera szablon pracy dyplomowej w LateXu: inżynierskiej oraz magisterskiej - przeznaczony dla Wydziału EiTI oraz Wydziału MEiL Politechniki Warszawskiej.
 
-Certainly! Here's a template for a README file tailored for a thesis document intended for GitHub, with Overleaf/LaTeX integration:
-
----
-
-# Thesis Title
+# Recognition of objects in the environments of autonomous vehicles in real-time
 
 ## Overview
 
