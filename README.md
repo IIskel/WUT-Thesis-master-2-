@@ -2,113 +2,65 @@
 
 Repozytorium zawiera szablon pracy dyplomowej w LateXu: inżynierskiej oraz magisterskiej - przeznaczony dla Wydziału EiTI oraz Wydziału MEiL Politechniki Warszawskiej.
 
-### Linki:
-[ref:issues]: https://github.com/ArturB/WUT-Thesis/issues
-[ref:main-tex]: https://github.com/ArturB/WUT-Thesis/blob/master/main.tex
-[ref:miktex]: https://miktex.org/
-[ref:overleaf]: https://www.overleaf.com/latex/templates/wut-thesis/vfvvdqztfqbt
-[ref:poradnik-ii]: http://www.ii.pw.edu.pl/index.php/ii_pol/Instytut-Informatyki/Nauczanie/Poradnik-dyplomanta/Przygotowanie-pracy-dyplomowej
-[ref:scons]: https://scons.org/
-[ref:texlive]: https://www.tug.org/texlive/
-[ref:vscode]: https://code.visualstudio.com/
-[ref:wiki]: https://github.com/ArturB/WUT-Thesis/wiki
-[ref:workshop]: https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
-[ref:wymogi-edytorskie]: https://www.bip.pw.edu.pl/var/pw/storage/original/application/235c0fd350f44cd00253ecdfa22bae61.pdf
+Certainly! Here's a template for a README file tailored for a thesis document intended for GitHub, with Overleaf/LaTeX integration:
 
-*  [>> Overleaf <<][ref:overleaf]
-* [Wymogi edytorskie (Zarządzenie Rektora, 2022)][ref:wymogi-edytorskie]
-* [Wskazówki dot. kompilacji][ref:wiki]
+---
 
-![](https://i.imgur.com/yeeuWpC.png)
+# Thesis Title
 
-----
+## Overview
 
-## Sposób użycia
-Szablon jest dostępny na platformie webowej [Overleaf][ref:overleaf], co umożliwia korzystanie z niego bez konieczności instalacji TeXa na własnej maszynie. Jest to **najprostsza i rekomendowana** metoda korzystania z szablonu.
+This repository contains the LaTeX source files for my thesis titled Recognition of Objects in the Environments of Autonomous Vehicles in real-time. This thesis endeavors to investigate a deep learning-based obstacle avoidance system designed for autonomous vehicles, including mobile robots, through the utilization of Neural Architecture Search (NAS)
 
-~~Czasami~~ Zazwyczaj ~~może się zdarzyć~~ jest tak, że wersja dostępna na Overleafie jest ~~nieco~~ sporo starsza niż ta znajdująca się na GitHubie. Wynika to z procesu aktualizacji tj. ręcznego zatwierdzania każdej zmiany przez administratorów Overleafa. Jeżeli chcesz korzystać z najnowszej wersji szablonu, możesz pobrać kod z repozytorium i zainstalować TeXa we własnym zakresie. Szczegółowe wskazówki i instrukcje znajdują się w zakładce [Kompilacja](#Kompilacja) oraz na [Wiki](ref:wiki).
+## Getting Started
 
-## Wydziały oraz języki
-Szablon przeznaczony jest dla wydziału EiTI oraz MEiL Politechniki Warszawskiej, a prace dyplomowe można pisać w języku polskim lub angielskim.
-Wyboru wydziału oraz języka dokonujemy w pliku [main.tex](ref:main-tex). Wybór wydziału (a tym samym wygląd strony tytułowej) określamy komendą
+To compile the LaTeX document, you can either use your local LaTeX distribution or import this project into Overleaf.
 
-```
-\facultyeiti
-```
+### Local Compilation
 
-lub
+1. Ensure you have LaTeX installed on your system. You can download it from [TeX Users Group](https://www.tug.org/).
+2. Clone this repository to your local machine:
 
-```
-\facultymeil
-```
+   ```bash
+   git clone https://github.com/IIskel/WUT-Thesis-master-2-.git
+   ```
 
-natomiast język wybieramy za pomocą komendy
+3. Navigate to the project directory:
 
-```
-\langpol
-```
+   ```bash
+   cd your-repository
+   ```
 
-lub
+4. Compile the main LaTeX file:
 
-```
-\langeng
-```
+   ```bash
+   pdflatex main.tex
+   ```
 
-## Status szablonu
-Szablon jest zgodny z aktualnymi wymogami edytorskimi dla prac dyplomowych, określonych w [Zarzadzeniu nr. 4/2022 Rektora PW](ref:wymogi-edytorskie) i zawiera wszystkie wymagane elementy: stronę tytułową, streszczenia, deklarację o autorstwie.
+   Run this command multiple times to resolve references and generate the final PDF.
 
-Poniższa tabela podsumowuje status zgodności szablonu z w/w Zarządzeniem. Wiersze pogrubione oznaczają elementy formatowania, które wg. Zarządzenia są "wymagane" lub "do wyboru" (spośród kilku opcji), pozostałe elementy formatowania są określone jako "zalecane".
+### Overleaf Integration
 
-| Element formatowania           | Status                                              |
-|--------------------------------|-----------------------------------------------------|
-| **Druk dwustronny, A4**        | **Jest**                                            |
-| Margines wewnętrzny            | 30 mm                                               |
-| Margines zewnętrzny            | 25 mm                                               |
-| Margines górny i dolny         | 25 mm                                               |
-| Krój pisma                     | Adobe Utopia, 12 pt                                 |
-| Interlinia                     | 1,15                                                |
-| **Numeracja stron**            | **U dołu z odbiciem lustrzanym**                    |
-| **Styl akapitu**               | **Wcięcie 0,5 cm**                                  |
-| **Odwołania do źródeł**        | **Styl numeracyjny**                                |
-| **Numeracja tabel i rysunków** | **Kolejna w rozdziałach**                           |
-| Bibliografia                   | Styl numeracyjny                                    |
-| Tytuł tabeli                   | Nad tabelą,    wyśrodkowany, 9 pt                   |
-| Podpis rysunku                 | Pod rysunkiem, wyśrodkowany, 9 pt                   |
-| **Podrozdziały**               | **Do 3 poziomów**                                   |
-| Wyliczenia                     | Dostępne: wyliczenia numerowane, kropka lub myślnik |
-| Przypis dolny                  | Numeracja ciągła, czcionka 9 pt                     |
+1. Sign up or log in to [Overleaf](https://www.overleaf.com/).
+2. Click on "New Project" -> "Import from GitHub".
+3. Enter the URL of this repository.
+4. Overleaf will import the project. You can now edit and compile the LaTeX document online.
 
-W dokumencie zawarte są przykładowe fragmenty kodu:
-- bibliografia, zawierająca różne typy źródeł: artykuł, książka lub jej fragment, raport, specyfikacja techniczna, repozytorium kodu;
-- fragment kodu źródłowego programu;
-- wykaz symboli i skrótów, spis rysunków, tabel oraz załączników;
+## Structure
 
-i wiele innych.
+- **`main.tex`**: Main LaTeX file containing document structure and metadata.
+- **`tex`**: Directory containing individual chapters.
+- **`tex/image`**: Directory for storing figures.
+- **`bibliografia.bib`**: Directory for bibliography files (e.g., `.bib`).
 
-Szablon został zatwierdzony przez [niektóre Instytuty][ref:poradnik-ii] wydziału EiTI do oficjalnego użytku. W trakcie realizacji są ustalenia z pozostałymi instytutami oraz podniesienie szablonu do rangi ogólnowydziałowego.
+## Contributing
 
-## Kompilacja
-Aby skompilować szablon na własnej maszynie, konieczna jest instalacja LaTeXa:
-- [texlive][ref:texlive] lub [MikTeX][ref:miktex] na Windowsie;
-- [texlive][ref:texlive] na Linuxie.
+Feel free to open an issue or submit a pull request if you have any issues, have suggestions, or want to contribute.
 
-Następnie należy wyposażyć się w IDE/edytor. Szablon jest rozwijany z użyciem [VS Code][ref:vscode], wyposażonym we wtyczkę [LaTeX Workshop][ref:workshop]. Możliwa jest również kompilacja z linii poleceń za pomocą [SCons][ref:scons] (wymagany Python).
+## License
 
-Aby zbudować plik PDF z pracą dyplomową, wystarczy z linii poleceń w głównym folderze projektu wykonać:
+This project is licensed under the [MIT License](LICENSE).
 
-```
-scons quick
-```
+## Acknowledgements
 
-Plik PDF z pracą dyplomową pojawi się w głównym folderze projektu.
-
-Szczegółowe informacje nt. samodzielnej kompilacji szablonu i rozwiązania ew. problemów znajdują w [encyklopedii projektu][ref:wiki].
-
-## Problemy
-Preferowanym kanałem zgłaszania problemów z szablonem są [issues-y][ref:issues] na GitHubie. Pisz tam, jeżeli masz jakiś problem.
-
-## Dla deweloperów
-Informacje dla osób zainteresowanych rozwijaniem szablonu znajdują się w [encyklopedii projektu][ref:wiki].
-
-## Uwagi
-Copyleft © [Artur M. Brodzki](https://github.com/ArturB) 2019-2023. Loosely based on [EiTI-Szablon](https://github.com/pwozniak/EiTI-Szablon) by [Piotr Woźniak](https://github.com/pwozniak). All wrongs reserved.
+I would like to express my gratitude to Prof. Rzymkowski Cezary, for their invaluable support and guidance throughout the thesis writing process.

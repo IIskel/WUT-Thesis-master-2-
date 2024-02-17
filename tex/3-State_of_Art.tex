@@ -58,8 +58,8 @@ R-CNN was the first successful deep learning–based object detection system, bu
         \item Due to the large number of regions, CNN predictions are slow for each proposal.
     \end{itemize}
         
-\subsubsection{Fast R-CNN:} In 2015, Ross Girshick from Microsoft proposed a single model called "Fast R-CNN" to overcome the limitations of R-CNNs. This model learns and outputs region proposals and classifications directly, resulting in higher mAP on PASCAL compared to R-CNN.  \href{https://arxiv.org/pdf/1504.08083.pdf}{\textcolor{blue}{Fast R-CNN:}}
-\href{https://medium.com/alegion/deep-learning-for-object-detection-and-localization-using-fast-r-cnn-85d52e3928a1}{\textcolor{blue}{[2]}}\\
+\subsubsection{Fast R-CNN:} In 2015, Ross Girshick from Microsoft proposed a single model called "Fast R-CNN" to overcome the limitations of R-CNNs. This model learns and outputs region proposals and classifications directly, resulting in higher mAP on PASCAL compared to R-CNN.\cite{girshick2015fast}  
+
 Fast R-CNN trains a deep VGG-16 network that is significantly faster than R-CNN (9x faster during training and 213x faster at test time). The model achieves this speed by evaluating the network and extracting features for the entire image once, instead of extracting features from each region of interest (RoI) as in R-CNN. To extract features from RoIs, Fast R-CNN uses the concept of RoI pooling, which is a special case of pyramid pooling used in SPPNet. 
 
 RoI pooling provides a feature vector of the desired length that is then used for classification and localization. This method is more efficient than R-CNN because the computations for overlapping regions are shared. Overall, Fast R-CNN significantly improves the speed and performance of object detection models.
@@ -79,7 +79,6 @@ RoI pooling provides a feature vector of the desired length that is then used fo
         \caption{Architectural Design of Fast R-CNN \cite{girshick2014rich}}
         \label{fig: Fast R-CNN}
     \end{figure}
-\href{https://www.mathworks.com/help/vision/ug/getting-started-with-r-cnn-fast-r-cnn-and-faster-r-cnn.html#d117e11449}{\textcolor{blue}{Image Source}}
         
 The region proposal network and feature extraction modules work similarly to the ones used in R-CNN. However, instead of passing each cropped and re-scaled RoI (region of interest), the entire input image is processed through a feature extractor like VGG-16. This produces a convolutional feature map. The features (i.e., the convolutional feature map) are then combined with the region proposal network, which uses a selective search approach to create a fixed-length feature vector in the RoI pooling layer. These feature vectors are then passed along to the classification and localization modules. The classification module classifies K+1 (1 for background) object classes using a softmax probability. The localization module outputs four real-valued numbers for each K object class. \cite{girshick2015fast}
 \subsubsection{Faster R-CNN}
@@ -112,14 +111,13 @@ Faster R-CNN added what they called a Region Proposal Network (RPN) in an attemp
 
 
 \subsubsection{Mask R-CNN}
-\textcolor{red}{\href{https://arxiv.org/pdf/1703.06870.pdf}{\textcolor{blue}{Mask R-CNN}}}
 The Mask R-CNN extends the Faster R-CNN. The Mask R-CNN adds another branch for the object class, bounding box coordinates, and predicting an object mask.
 Here is how the Mask R-CNN differs from its predecessor, the Faster R-CNN:
 \begin{itemize}
     \item The Faster R-CNN algorithm produces two main results, namely: a predicted class label and the coordinates of the bounding box for the object of interest in an image.
     \item The Mask R-CNN has three outputs: a class label, bounding box coordinates, and an object mask.
 \end{itemize}
-The Mask R-CNN algorithm classifies each pixel of an image into a specific category, without distinguishing between individual object instances. To achieve this, it employs a technique known as pixel-to-pixel alignment between the output and input layers of the neural network. The classification of each pixel is then used to determine the masks in the region of interest (ROI).
+The Mask R-CNN algorithm classifies each pixel of an image into a specific category, without distinguishing between individual object instances. To achieve this, it employs a technique known as pixel-to-pixel alignment between the output and input layers of the neural network. The classification of each pixel is then used to determine the masks in the region of interest (ROI).\cite{he2017mask}
 
 \begin{figure}[H]
     \centering
