@@ -117,7 +117,7 @@ Here is how the Mask R-CNN differs from its predecessor, the Faster R-CNN:
     \item The Faster R-CNN algorithm produces two main results, namely: a predicted class label and the coordinates of the bounding box for the object of interest in an image.
     \item The Mask R-CNN has three outputs: a class label, bounding box coordinates, and an object mask.
 \end{itemize}
-The Mask R-CNN algorithm classifies each pixel of an image into a specific category, without distinguishing between individual object instances. To achieve this, it employs a technique known as pixel-to-pixel alignment between the output and input layers of the neural network. The classification of each pixel is then used to determine the masks in the region of interest (ROI).\cite{he2017mask}
+The Mask R-CNN algorithm classifies each pixel of an image into a specific category without distinguishing between individual object instances. To achieve this, it employs a technique known as pixel-to-pixel alignment between the output and input layers of the neural network. The classification of each pixel is then used to determine the masks in the region of interest (ROI).\cite{he2017mask}
 
 \begin{figure}[H]
     \centering
@@ -136,9 +136,9 @@ As shown in Figure \ref{fig:MaskR-CNN}, the network consists of three components
     \end{figure}
 The FPN consists of decreasing-size layers of a CNN, in which case each forward layer has fewer neurons.
 
-        \item \textbf{Feature Pyramid Network (FPN): } is a neck network that combines features of different resolutions obtained from a backbone network, such as ResNet. A CNN-based backbone applies convolution layers to an input image, which results in a set of feature maps with decreasing resolution due to pooling or convolution with a stride different from one.\\
-        The FPN consists of a bottom-up and top-down pathway. In the bottom-up pathway, a backbone network, such as ResNet, extracts features with diminishing spatial resolution.
-        As the levels of resolution decrease, the semantic meaning of the feature maps increases, as indicated by the blue thickness of the box boundaries.\\
+        \item \textbf{Feature Pyramid Network (FPN): } is a neck network that combines features of different resolutions obtained from a backbone network, such as ResNet. A CNN-based backbone applies convolution layers to an input image, which results in a set of feature maps with decreasing resolution due to pooling or convolution with a stride different from one. \\
+        The FPN consists of bottom-up and top-down pathways. In the bottom-up pathway, a backbone network, such as ResNet, extracts features with diminishing spatial resolution.
+        As the levels of resolution decrease, the semantic meaning of the feature maps increases, as indicated by the blue thickness of the box boundaries. \\
         The feature maps are fused in the top-down pathway to incorporate rich semantic meaning and precise spatial information, as illustrated in the figure. \ref{fig:FPN_Arch} below. \cite{lin2017feature}
         \begin{figure}[H]
             \centering
@@ -159,7 +159,7 @@ A single-shot object detector predicts object classes and bounding boxes in one 
 \begin{itemize}
     \item \textbf{SSD Network Architecture: } The SSD approach is a method that uses a feed-forward convolutional network to generate a set of fixed-size bounding boxes and scores, which helps detect the presence of object class instances in those boxes. A non-maximum suppression step is performed in the final stage to obtain the ultimate detections. \\
     \begin{itemize}
-        \item \textbfThe {Single Shot MultiBox Detector (SSD)} is a novel object detection framework that adopts grid-based image division instead of the conventional sliding window approach. The SSD approach divides the image into a grid pattern, where each grid cell is responsible for detecting objects within its corresponding region of the image. The objective of object detection is to predict the class and location of an object within its region. In case no object is present, the region is considered a background class, and the location is consequently ignored.
+        \item \textbf{Single Shot MultiBox Detector (SSD)} is a novel object detection framework that adopts grid-based image division instead of the conventional sliding window approach. The SSD approach divides the image into a grid pattern, where each grid cell is responsible for detecting objects within its corresponding region of the image. The objective of object detection is to predict the class and location of an object within its region. In case no object is present, the region is considered a background class, and the location is consequently ignored.
 
         During the training process, SSD requires only an input image and ground truth boxes for each object. In a convolutional manner, a small set of default boxes of different aspect ratios is evaluated at each location in several feature maps with different scales. For instance, 8x8 and 4x4 in (b) and (c). For each default box, SSD predicts the shape offsets and confidences for all object categories (c1, c2, ..., cp). Notably, these default boxes are first matched to the ground truth boxes during training.
         \begin{figure}[H]
